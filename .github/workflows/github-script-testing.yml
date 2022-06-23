@@ -22,8 +22,19 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: getting list of issues
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.payload.sender.login
+              ...context.repo
+            });
+            
+            console.log(issues.length)
+      
       # Getting the context details
       - name: Get the context details
         uses: actions/github-script@v6
         with:
-          script: console.log(...context.issue)
+          script: console.log(context)
