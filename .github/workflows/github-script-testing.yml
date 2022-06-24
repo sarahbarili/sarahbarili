@@ -27,7 +27,7 @@ jobs:
         with:
           script: |
             const issues = await github.rest.issues.listForRepo({
-              owner: context.payload.sender.login
+              owner: context.payload.sender.login,
               ...context.repo
             });
             
